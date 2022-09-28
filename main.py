@@ -22,7 +22,7 @@ df['Sex'] = df['Sex'].apply(lambda x: sex_dict[x])
 
 
 cols = ['Pclass', 'Age', 'SibSp', 'Fare', 'Sex']
-train_df = df.sample(frac=0.8)
+train_df = df.sample(frac=0.8, random_state=2022)
 valid_df = df.drop(index=train_df.index).reset_index(drop=True)
 train_df = train_df.reset_index(drop=True)
 
