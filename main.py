@@ -1,6 +1,9 @@
 import pandas as pd 
 import lightgbm as lgb
+from sklearn.metrics import roc_auc_score
 from sklearn.preprocessing import LabelEncoder
+
+from preprocessing import preprocessing
 
 
 df = pd.read_csv("train.csv")
@@ -12,14 +15,8 @@ lb = LabelEncoder()
 
 y_col = 'Survied'
 
-df['Sex'] = df['Sex'].fillna('')
 
-sex_dict = {
-    'male' : 0,
-    'female' : 1
-}
-df['Sex'] = df['Sex'].apply(lambda x: sex_dict[x])
-
+df = preprocessing(df)
 
 cols = ['Pclass', 'Age', 'SibSp', 'Fare', 'Sex']
 train_df = df.sample(frac=0.8, random_state=2022)
@@ -31,5 +28,4 @@ clf = lgb.LGBMClassifier()
 clf.fit(train_df[cols], train_df['Survived'])
 valid_preds = clf.predict(valid_df[cols])
 
-from sklearn.metrics import roc_auc_score
 print(roc_auc_score(valid_df['Survived'], valid_preds))
