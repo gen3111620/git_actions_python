@@ -5,7 +5,7 @@ import pytest
 
 sys.path.append("../")
 
-from git_actions_python.preprocessing import preprocessing
+from preprocessing import preprocessing
 
 
 def test_preprocessing():
