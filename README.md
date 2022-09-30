@@ -14,14 +14,17 @@ github actions practice project
 * matrix : define a matrix of different job configurations. Within your matrix
 ![alt text](https://github.com/gen3111620/git_actions_python/blob/main/actions.png?raw=true)
 
+
 ```
 jobs:
   example_matrix:
     strategy:
       matrix:
+        os: [ubuntu-22.04, ubuntu-20.04]
         version: [10, 12, 14]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.version }}
-```
+  ```

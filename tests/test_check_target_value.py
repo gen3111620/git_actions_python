@@ -11,5 +11,4 @@ from preprocessing import preprocessing
 
 def test_preprocessing():
     df = pd.read_csv("train.csv")
-    df = preprocessing(df)
-    assert np.all(df.Sex.values[:5] == np.array([0, 1, 1, 1, 0], dtype=np.int64))
+    assert np.all(df.Survived.values[:5] == np.array([0, 1, 1, 1, 0], dtype=np.int64))
